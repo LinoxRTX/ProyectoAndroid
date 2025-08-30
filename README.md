@@ -10,11 +10,11 @@
    *FitLife Tracker*
 
 2. **Propósito y problema que resuelve:**  
-   * Ayuda a los usuarios a organizar sus rutinas, calcular su IMC y recibir recomendaciones de ejercicio de manera simple y eficiente.
+   * Ayuda a los usuarios a organizar sus rutinas, calcular su IMC y recibir recomendaciones de ejercicio de manera simple y eficiente. Esta aplicación busca ser simple y para que los usuarios puedan tener una rutina al menos basica y tener consciencia de su indice de peso.
 
 3. **Pantallas iniciales (Activities y Fragments):**  
-   * **Activities:** LoginActivity y MainActivity  
-   * **Fragments:** HomeFragment, IMCFragment, CrearRutinaFragment y EncontrarRutinaFragment  
+   * **Activities:** LoginActivity y MainActivity
+   * **Fragments:** HomeFragment, IMCFragment, CrearRutinaFragment y EncontrarRutinaFragment
 
 4. **Navegación entre pantallas:**  
    * De LoginActivity a MainActivity mediante `Intent` con datos del usuario.  
