@@ -1,0 +1,52 @@
+# Archivos de la aplicación compilada
+*.apk
+*.aab
+
+# Archivos para la VM ART/Dalvik
+*.dex
+
+# Archivos de clase Java
+*.class
+
+# Archivos generados
+bin/
+gen/
+out/
+
+# Archivos de Gradle
+.gradle/
+build/
+
+# Archivos de configuración local (ruta del SDK, etc.)
+local.properties
+
+# Archivos de log
+*.log
+
+# Archivos del editor de navegación de Android Studio
+.navigation/
+
+# Carpeta de capturas de Android Studio
+captures/
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/libraries/
+.idea/caches/
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Archivos Keystore
+*.jks
+*.keystore
+
+# Carpeta de compilación nativa externa generada en Android Studio 2.2 y posteriores
+.externalNativeBuild/
+
+# Google Services (solo si no lo has subido de forma segura)
+# google-services.json
+
+# Secretos (como claves API - mejor manejarlos de forma segura)
+# secrets.properties

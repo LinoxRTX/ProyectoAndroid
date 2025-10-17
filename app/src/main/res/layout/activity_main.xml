@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <!-- Título llamativo -->
+    <TextView
+        android:id="@+id/tvTituloLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💪 Bienvenido a FitLife Tracker"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#00BCD4"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Botón Google -->
+    <Button
+        android:id="@+id/btnGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesión con Google"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4285F4"
+        android:drawablePadding="8dp"
+        android:padding="12dp" />
+
+    <!-- Botón Invitado -->
+    <Button
+        android:id="@+id/btnInvitado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Entrar como invitado"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF9800"
+        android:onClick="home"
+        android:padding="12dp" />
+
+    <!-- Barra de progreso opcional -->
+    <ProgressBar
+        android:id="@+id/progressLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_marginTop="32dp" />
+
+</LinearLayout>

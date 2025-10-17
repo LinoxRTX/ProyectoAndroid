@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "483302094425",
+    "project_id": "fitelife-e960d",
+    "storage_bucket": "fitelife-e960d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483302094425:android:ee5920c1f244115deaa348",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483302094425-fnge1rq173cdmfc31elcrp5e9qaq2g5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "a96e4fdd0f79bf196057851362ad74284eed60d6"
+          }
+        },
+        {
+          "client_id": "483302094425-03artet4h75kight70rsijc176til3j4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhJu_vvdi7IEwkM2RKpXG8-pMeGjU4eI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483302094425-03artet4h75kight70rsijc176til3j4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
