@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F7F8FA"
     android:padding="32dp"
-    tools:context=".Login">
+    tools:context=".ui.login.Login">
 
     <TextView
         android:id="@+id/tvTitle"

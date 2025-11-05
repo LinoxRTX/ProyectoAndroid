@@ -19,7 +19,7 @@
         android:theme="@style/Theme.MyApplication">
 
         <activity
-            android:name=".Login"
+            android:name=".ui.login.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,13 +32,18 @@
             android:exported="false" />
 
         <activity
-            android:name=".Imc"
+            android:name=".ui.imc.Imc"
             android:exported="false" />
         <activity
-            android:name=".Rutina"
+            android:name=".ui.rutina.Rutina"
             android:exported="false" />
+
         <activity
-            android:name=".home"
+            android:name=".ui.rutina.RutinaDetalleActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.home.home"
             android:exported="false" />
 
     </application>

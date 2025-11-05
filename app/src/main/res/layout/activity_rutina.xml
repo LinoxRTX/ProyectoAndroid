@@ -1,106 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="24dp"
-    tools:context=".Rutina">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.rutina.Rutina">
 
-    <!-- Contenedor vertical -->
-    <LinearLayout
-        android:id="@+id/contenedorRutina"
-        android:layout_width="0dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:text="Crear Nueva Rutina"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#00BCD4"
+        android:layout_marginBottom="16dp"/>
 
-        <!-- Nombre de la rutina -->
-        <TextView
-            android:id="@+id/tvNombreRutinaDetalle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🏋️ Rutina: Piernas Poderosas"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#00BCD4" />
-
-        <!-- Tipo y objetivo -->
-        <TextView
-            android:id="@+id/tvTipoObjetivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo: Piernas  |  Objetivo: Ganar masa"
-            android:textColor="#555555"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp" />
-
-        <!-- Fecha -->
-        <TextView
-            android:id="@+id/tvFechaRutina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🗓️ Inicio: --"
-            android:textColor="#555555"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp" />
-
-        <!-- Proteínas recomendadas -->
-        <TextView
-            android:id="@+id/tvProteinas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🍗 Proteínas recomendadas: --"
-            android:textColor="#555555"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp" />
-
-        <!-- Separador visual -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="#DDDDDD" />
-
-        <!-- Título ejercicios -->
-        <TextView
-            android:id="@+id/tvTituloEjercicios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="📋 Ejercicios incluidos"
-            android:textColor="#4CAF50"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="12dp" />
-
-        <!-- RecyclerView de ejercicios -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEjercicios"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="12dp"
-            android:clipToPadding="false"
-            android:paddingBottom="8dp"
-            tools:listitem="@layout/item_ejercicio" />
-    </LinearLayout>
-
-    <!-- Botón cerrar -->
-    <Button
-        android:id="@+id/btnCerrarDetalle"
+    <EditText
+        android:id="@+id/etNombreRutina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar detalle"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FF9800"
-        android:padding="12dp"
-        android:onClick="volverrutina"
-        app:layout_constraintTop_toBottomOf="@+id/contenedorRutina"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:hint="Nombre (ej. Lunes de Pecho)"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Selecciona el rango de fechas:"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnAbrirCalendario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Abrir" />
+
+        <TextView
+            android:id="@+id/tvRangoFechas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="No seleccionado"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Selecciona el tipo de rutina:"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinnerTipoRutina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ejercicios predefinidos:"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvEjerciciosLista"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:background="#F5F5F5"
+        android:textColor="#000000"
+        tools:text="Ejercicio 1 (4x10)\nEjercicio 2 (3x12)" />
+
+    <Button
+        android:id="@+id/btnGuardarRutina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Guardar Rutina"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

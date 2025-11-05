@@ -11,6 +11,7 @@ googleGmsGoogleServices = "4.4.4"
 firebaseBom = "33.1.2"
 playServicesAuth = "21.2.0"
 playServicesLocation = "21.3.0"
+lifecycle = "2.8.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -24,6 +25,9 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

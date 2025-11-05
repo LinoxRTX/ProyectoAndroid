@@ -5,103 +5,143 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".Imc">
+    android:background="#F7F8FA"
+    tools:context=".ui.imc.Imc">
 
-    <!-- Título -->
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Volver"
+        android:onClick="volver"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#555555" />
+
     <TextView
         android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculadora IMC"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#00BCD4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
-
-    <!-- Contenedor -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Calculadora de IMC"
+        android:textColor="#333333"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVolver"
+        app:layout_constraintEnd_toStartOf="@+id/btnVolver"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/btnVolver" />
 
-        <!-- Campo Peso -->
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutPeso"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:hint="Peso (kg)"
+        app:boxStrokeColor="#00BCD4"
+        app:hintTextColor="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPeso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Peso (kg)"
-            android:inputType="numberDecimal"
-            android:padding="12dp"
-            android:backgroundTint="#4CAF50"
-            android:textColor="#000000"
-            android:textColorHint="#777777"/>
+            android:inputType="numberDecimal" />
 
-        <!-- Campo Altura -->
-        <EditText
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutAltura"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:hint="Altura (cm)"
+        app:boxStrokeColor="#00BCD4"
+        app:hintTextColor="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPeso">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Altura (cm)"
-            android:inputType="numberDecimal"
-            android:padding="12dp"
-            android:backgroundTint="#4CAF50"
-            android:textColor="#000000"
-            android:textColorHint="#777777"/>
+            android:inputType="numberDecimal" />
 
-        <!-- Botón Calcular -->
-        <Button
-            android:id="@+id/btnCalcularIMC"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCalcularIMC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingVertical="12dp"
+        android:text="Calcular IMC"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="#00BCD4"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutAltura" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardResultado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/btnCalcularIMC"
+        app:layout_constraintStart_toStartOf="@+id/btnCalcularIMC"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalcularIMC"
+        tools:visibility="visible">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Calcular IMC"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FF9800"/>
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <!-- Resultado -->
-        <TextView
-            android:id="@+id/tvResultadoIMC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="IMC: --"
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvResultadoIMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#00BCD4"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                tools:text="22.5" />
 
-        <!-- Clasificación -->
-        <TextView
-            android:id="@+id/tvClasificacionIMC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Clasificación: --"
-            android:textSize="16sp"
-            android:textColor="#555555" />
+            <TextView
+                android:id="@+id/tvClasificacionIMC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                tools:text="Peso normal" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <!-- Botón Volver -->
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="volver"
-        android:text="Volver"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#9E9E9E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp"/>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

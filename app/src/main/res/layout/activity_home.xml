@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".home">
+    tools:context=".ui.home.home">
 
     <Button
         android:id="@+id/btnCerrarSesion"
@@ -64,7 +64,10 @@
         app:layout_constraintBottom_toTopOf="@id/tvLocationFooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvBienvenida" />
+        app:layout_constraintTop_toBottomOf="@id/tvBienvenida"
+        tools:listitem="@layout/item_rutina"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    />
 
     <TextView
         android:id="@+id/tvLocationFooter"

@@ -44,4 +44,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.play.services.location)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.firebase.database)
 }
