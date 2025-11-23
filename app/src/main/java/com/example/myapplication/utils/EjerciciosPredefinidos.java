@@ -63,6 +63,7 @@ public class EjerciciosPredefinidos {
         ejerciciosFullBody.add(new Ejercicio("Plancha (segs)", 3, 45));
         mapaEjercicios.put("Full Body", ejerciciosFullBody);
 
+
     }
 
     public static List<Ejercicio> getEjerciciosPorTipo(String tipoRutina) {
