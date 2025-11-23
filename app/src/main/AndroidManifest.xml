@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
 
     <application
@@ -40,6 +42,10 @@
 
         <activity
             android:name=".ui.rutina.RutinaDetalleActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.camara.CamaraActivity"
             android:exported="false" />
 
         <activity

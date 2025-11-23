@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="@color/background_main"
     tools:context=".ui.rutina.RutinaDetalleActivity">
 
     <FrameLayout
@@ -21,17 +21,17 @@
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Volver"
-            app:tint="#555555" />
+            app:tint="@color/text_primary" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/tvNombreRutinaDetalle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#00BCD4"
+        android:textColor="@color/purple_primary"
         android:textSize="28sp"
         android:textStyle="bold"
         tools:text="Día de Pecho Intenso" />
@@ -40,37 +40,50 @@
         android:id="@+id/tvDiasRutinaDetalle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:textSize="16sp"
-        android:textColor="#333333"
+        android:textColor="@color/text_secondary"
         tools:text="Lunes, Miércoles, Viernes" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Ejercicios de la rutina:"
+        android:layout_marginStart="24dp"
+        android:text="📋 Ejercicios de la rutina"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/purple_primary"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="24dp"
+        android:clipToPadding="false">
 
-        <TextView
-            android:id="@+id/tvEjerciciosListaDetalle"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:lineSpacingExtra="8dp"
-            tools:text="Press Banca (4x10)\nPress Inclinado (3x12)\nAperturas (3x15)" />
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/background_surface"
+            app:strokeColor="@color/divider_gray"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvEjerciciosListaDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="8dp"
+                tools:text="• Press Banca (4x10)\n• Press Inclinado (3x12)\n• Aperturas (3x15)" />
+
+        </com.google.android.material.card.MaterialCardView>
     </ScrollView>
 
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -19,9 +18,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.data.models.RutinaModel;
+import com.example.myapplication.ui.camara.CamaraActivity;
 import com.example.myapplication.ui.home.adapter.OnRutinaClickListener;
 import com.example.myapplication.ui.home.adapter.RutinasAdapter;
 import com.example.myapplication.ui.imc.Imc;
@@ -29,10 +29,8 @@ import com.example.myapplication.ui.login.Login;
 import com.example.myapplication.ui.rutina.Rutina;
 import com.example.myapplication.ui.rutina.RutinaDetalleActivity;
 import com.example.myapplication.utils.Result;
-
 import java.util.List;
 
-// Implementa la interfaz (que ahora tiene 3 métodos)
 public class home extends AppCompatActivity implements OnRutinaClickListener {
 
     private TextView tvSessionStatus;
@@ -40,7 +38,6 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
     private HomeViewModel viewModel;
     private boolean isGuestMode = true;
     private ActivityResultLauncher<String> requestPermissionLauncher;
-
     private RecyclerView rvRutinas;
     private RutinasAdapter rutinasAdapter;
 
@@ -49,23 +46,16 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-
         tvSessionStatus = findViewById(R.id.tvSessionStatus);
         tvLocationFooter = findViewById(R.id.tvLocationFooter);
         rvRutinas = findViewById(R.id.rvRutinas);
-
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         isGuestMode = getIntent().getBooleanExtra("IS_GUEST_MODE", true);
-
         viewModel.initSession(isGuestMode);
-
         setupRecyclerView();
         setupObservers();
         setupPermissionLauncher();
         checkAndRequestLocationPermission();
-
-        // viewModel.cargarRutinas(isGuestMode); // <-- ESTA LÍNEA SE MOVIÓ A onResume()
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -73,16 +63,12 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
         });
     }
 
-    // --- MÉTODO AÑADIDO ---
     @Override
     protected void onResume() {
         super.onResume();
-        // Cada vez que la pantalla 'home' se ponga visible (incluyendo
-        // cuando regresas de crear una rutina), se llamará a este método.
         Log.d("HomeActivity", "onResume: Recargando rutinas...");
-        viewModel.cargarRutinas(isGuestMode); // <-- AHORA SE CARGA AQUÍ
+        viewModel.cargarRutinas(isGuestMode);
     }
-    // ---
 
     private void setupRecyclerView() {
         rutinasAdapter = new RutinasAdapter(this);
@@ -94,11 +80,9 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
         viewModel.sessionStatus.observe(this, status -> {
             tvSessionStatus.setText(status);
         });
-
         viewModel.locationStatus.observe(this, location -> {
             tvLocationFooter.setText(location);
         });
-
         viewModel.navigateToLogin.observe(this, navigate -> {
             if (navigate) {
                 Intent intent = new Intent(home.this, Login.class);
@@ -107,7 +91,6 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
                 finish();
             }
         });
-
         viewModel.rutinas.observe(this, resultado -> {
             if (resultado instanceof Result.Loading) {
                 Log.d("HomeActivity", "Cargando rutinas...");
@@ -119,6 +102,11 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
                 Exception e = ((Result.Error<List<RutinaModel>>) resultado).exception;
                 Log.e("HomeActivity", "Error al cargar rutinas", e);
                 Toast.makeText(this, "Error al cargar rutinas", Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewModel.toastMessage.observe(this, mensaje -> {
+            if(mensaje != null && !mensaje.isEmpty()){
+                Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -147,10 +135,14 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
         }
     }
 
-    // --- Métodos de Navegación (sin cambios) ---
     public void rutina(View view) {
         Intent intent = new Intent(this, Rutina.class);
         intent.putExtra("IS_GUEST_MODE", isGuestMode);
+        startActivity(intent);
+    }
+
+    public void abrirCamara(View view) {
+        Intent intent = new Intent(this, CamaraActivity.class);
         startActivity(intent);
     }
 
@@ -163,12 +155,17 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
         viewModel.signOut();
     }
 
-    // --- MÉTODOS DE LA INTERFAZ OnRutinaClickListener ---
+    public void irAcercaDe(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onEditarClick(RutinaModel rutina) {
-        viewModel.editarRutina(rutina);
-        Toast.makeText(this, "Editando: " + rutina.getNombreRutina(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Rutina.class);
+        intent.putExtra("RUTINA_PARA_EDITAR", rutina);
+        intent.putExtra("IS_GUEST_MODE", isGuestMode);
+        startActivity(intent);
     }
 
     @Override
@@ -179,13 +176,8 @@ public class home extends AppCompatActivity implements OnRutinaClickListener {
 
     @Override
     public void onRutinaClick(RutinaModel rutina) {
-        // Creamos el Intent para abrir la nueva pantalla de detalle
         Intent intent = new Intent(this, RutinaDetalleActivity.class);
-
-        // Adjuntamos la rutina completa (que hicimos Serializable)
         intent.putExtra("RUTINA_SELECCIONADA", rutina);
-
-        // Lanzamos la nueva Activity
         startActivity(intent);
     }
 }

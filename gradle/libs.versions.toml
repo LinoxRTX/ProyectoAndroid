@@ -12,6 +12,7 @@ firebaseBom = "33.1.2"
 playServicesAuth = "21.2.0"
 playServicesLocation = "21.3.0"
 lifecycle = "2.8.3"
+camerax = "1.3.1" # <-- AÑADE ESTA LÍNEA
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,6 +29,12 @@ play-services-location = { group = "com.google.android.gms", name = "play-servic
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycle" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database" }
 
+# --- AÑADE ESTE GRUPO ENTERO PARA CAMERAX ---
+camerax-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
+camerax-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+camerax-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+camerax-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
+# ---
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

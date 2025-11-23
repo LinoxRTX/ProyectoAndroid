@@ -1,54 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="#FFFFFF"
-    android:padding="24dp">
+    android:background="@color/background_main"
+    tools:context=".MainActivity">
 
-    <!-- Título llamativo -->
-    <TextView
-        android:id="@+id/tvTituloLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="💪 Bienvenido a FitLife Tracker"
-        android:textSize="24sp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="48dp"
+        android:paddingBottom="24dp"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="FitLife Tracker"
+            android:textColor="@color/text_primary"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="v1.0.0"
+            android:textColor="@color/purple_light"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnIrALogin"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/background_surface"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/divider_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎯 Finalidad del Proyecto"
+                        android:textColor="@color/purple_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="4dp"
+                        android:text="FitLife Tracker nace con el objetivo de simplificar el seguimiento de tu progreso físico. Olvida las notas de papel o las hojas de cálculo complejas. Aquí puedes registrar tus rutinas, visualizar tus ejercicios y calcular métricas de salud clave como el IMC, todo en una interfaz moderna y oscura diseñada para no molestar en el gimnasio. Tambien es nuestro Proyecto de Programación Android, espero disfruten de esta aplicación y les sea util ^-^."
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/background_surface"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/divider_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👨‍💻 Equipo de Desarrollo"
+                        android:textColor="@color/purple_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Este proyecto fue creado con pasión y dedicación por:"
+                        android:textColor="@color/text_secondary" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:drawablePadding="8dp"
+                        android:text="• Vicente Lizana (Back-end)"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        app:drawableStartCompat="@android:drawable/ic_menu_myplaces"
+                        app:drawableTint="@color/purple_primary"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:drawablePadding="8dp"
+                        android:text="• Bnejamin Vivero (Front-end)"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        app:drawableStartCompat="@android:drawable/ic_menu_myplaces"
+                        app:drawableTint="@color/purple_primary"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/background_surface"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/divider_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚙️ Funcionalidades"
+                        android:textColor="@color/purple_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="6dp"
+                        android:text="1. Inicia Sesión: Usa Google o entra como invitado.\n2. Crea Rutinas: Asigna nombre, fechas y tipo.\n3. Cámara: Registra tu progreso físico con fotos diarias.\n4. IMC: Calcula tu índice de masa corporal rápidamente.\n5. Nube: Tus datos se sincronizan en tiempo real con Firebase."
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnIrALogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:text="Ir a la Aplicación"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#00BCD4"
-        android:layout_marginBottom="32dp" />
+        app:cornerRadius="30dp"
+        app:backgroundTint="@color/purple_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Botón Google -->
-    <Button
-        android:id="@+id/btnGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Iniciar sesión con Google"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#4285F4"
-        android:drawablePadding="8dp"
-        android:padding="12dp" />
-
-    <!-- Botón Invitado -->
-    <Button
-        android:id="@+id/btnInvitado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Entrar como invitado"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FF9800"
-        android:onClick="home"
-        android:padding="12dp" />
-
-    <!-- Barra de progreso opcional -->
-    <ProgressBar
-        android:id="@+id/progressLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_marginTop="32dp" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

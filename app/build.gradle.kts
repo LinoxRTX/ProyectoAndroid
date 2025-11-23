@@ -46,4 +46,11 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.firebase.database)
+
+    // --- DEPENDENCIAS DE CAMERAX AÑADIDAS ---
+    implementation(libs.camerax.core)
+    implementation(libs.camerax.camera2)
+    implementation(libs.camerax.lifecycle)
+    implementation(libs.camerax.view)
+    // ---
 }

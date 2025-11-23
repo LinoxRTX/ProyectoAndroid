@@ -5,8 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/background_main"
     tools:context=".ui.home.home">
+
+    <ImageButton
+        android:id="@+id/btnAcercaDe"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:contentDescription="Acerca de"
+        android:onClick="irAcercaDe"
+        app:tint="@color/text_secondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCerrarSesion"
@@ -14,10 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#F44336"
+        android:backgroundTint="@color/background_surface"
         android:onClick="cerrarSesion"
         android:text="Cerrar Sesión"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/error_red"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,25 +43,23 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        android:gravity="center_vertical|start"
+        android:gravity="center_vertical|end"
         android:maxLines="2"
-        android:textColor="#555555"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnCerrarSesion"
         app:layout_constraintEnd_toStartOf="@+id/btnCerrarSesion"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnAcercaDe"
         app:layout_constraintTop_toTopOf="@+id/btnCerrarSesion"
-        tools:text="Usuario: lizanavicente48@gmail.com" />
-
+        tools:text="Usuario: ejemplo@gmail.com" />
     <TextView
         android:id="@+id/tvBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="🏋️ ¡Bienvenido a tu hub de salud!"
-        android:textColor="#00BCD4"
-        android:textSize="22sp"
+        android:layout_marginTop="32dp"
+        android:text="🏋️ Tu Hub de Salud"
+        android:textColor="@color/purple_primary"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,18 +69,17 @@
         android:id="@+id/rvRutinas"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:clipToPadding="false"
-        android:padding="8dp"
+        android:padding="16dp"
         android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/tvLocationFooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvBienvenida"
-        tools:listitem="@layout/item_rutina"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    />
+        tools:listitem="@layout/item_rutina" />
 
     <TextView
         android:id="@+id/tvLocationFooter"
@@ -75,9 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:textColor="#757575"
+        android:textColor="@color/text_secondary"
         android:textSize="12sp"
         android:text="Obteniendo ubicación..."
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
@@ -89,9 +101,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -101,22 +113,34 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#4CAF50"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/purple_primary"
             android:onClick="rutina"
-            android:text="Crear Rutina"
-            android:textColor="#FFFFFF" />
+            android:text="Rutina"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnAbrirCamara"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/purple_dark"
+            android:onClick="abrirCamara"
+            android:text="Cámara"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btnCalcularIMC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#FF9800"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/purple_light"
             android:onClick="imc"
-            android:text="Calcular IMC"
-            android:textColor="#FFFFFF" />
+            android:text="IMC"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

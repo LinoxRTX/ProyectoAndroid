@@ -2,20 +2,17 @@ package com.example.myapplication.ui.home;
 
 import android.app.Application;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.myapplication.data.AuthRepository;
 import com.example.myapplication.data.FirebaseAuthRepository;
 import com.example.myapplication.data.RutinaRepository;
 import com.example.myapplication.data.RutinasCallback;
-import com.example.myapplication.data.SimpleCallback; // <-- IMPORTADO
+import com.example.myapplication.data.SimpleCallback;
 import com.example.myapplication.data.models.RutinaModel;
 import com.example.myapplication.utils.GeocoderCallback;
 import com.example.myapplication.utils.GeocoderHelper;
@@ -30,12 +27,9 @@ import java.util.List;
 
 public class HomeViewModel extends AndroidViewModel {
 
-    // --- Repositorios ---
     private FusedLocationProviderClient fusedLocationClient;
     private AuthRepository authRepository;
     private RutinaRepository rutinaRepository;
-
-    // --- LiveData ---
     private MutableLiveData<String> _sessionStatus = new MutableLiveData<>();
     public LiveData<String> sessionStatus = _sessionStatus;
     private MutableLiveData<String> _locationStatus = new MutableLiveData<>();
@@ -44,8 +38,8 @@ public class HomeViewModel extends AndroidViewModel {
     public LiveData<Boolean> navigateToLogin = _navigateToLogin;
     private MutableLiveData<Result<List<RutinaModel>>> _rutinas = new MutableLiveData<>();
     public LiveData<Result<List<RutinaModel>>> rutinas = _rutinas;
-    private MutableLiveData<String> _toastMessage = new MutableLiveData<>(); // <-- AÑADIDO
-    public LiveData<String> toastMessage = _toastMessage; // <-- AÑADIDO
+    private MutableLiveData<String> _toastMessage = new MutableLiveData<>();
+    public LiveData<String> toastMessage = _toastMessage;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -53,7 +47,6 @@ public class HomeViewModel extends AndroidViewModel {
         authRepository = new FirebaseAuthRepository(application);
         rutinaRepository = new RutinaRepository();
     }
-
     public void initSession(boolean isGuestMode) {
         if (isGuestMode) {
             _sessionStatus.setValue("Modo: Invitado");
@@ -66,7 +59,6 @@ public class HomeViewModel extends AndroidViewModel {
             }
         }
     }
-
     public void cargarRutinas(boolean isGuest) {
         _rutinas.setValue(new Result.Loading<>());
         rutinaRepository.obtenerRutinas(isGuest, new RutinasCallback() {
@@ -80,9 +72,6 @@ public class HomeViewModel extends AndroidViewModel {
             }
         });
     }
-
-    // --- MÉTODO ELIMINAR (CORREGIDO) ---
-    // Ahora esta llamada coincide con el Repositorio (Archivo 1)
     public void eliminarRutina(RutinaModel rutina, boolean isGuest) {
         rutinaRepository.eliminarRutina(rutina, isGuest, new SimpleCallback() {
             @Override
@@ -96,12 +85,9 @@ public class HomeViewModel extends AndroidViewModel {
             }
         });
     }
-    // --- FIN DE LA CORRECCIÓN ---
-
     public void editarRutina(RutinaModel rutina) {
         Log.d("HomeViewModel", "Editar rutina: " + rutina.getNombreRutina());
     }
-
     public void fetchLocation() {
         if (ActivityCompat.checkSelfPermission(getApplication(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             _locationStatus.setValue("Error: Permiso no concedido.");
@@ -118,7 +104,6 @@ public class HomeViewModel extends AndroidViewModel {
                 })
                 .addOnFailureListener(e -> _locationStatus.setValue("Error al obtener ubicación."));
     }
-
     private void getCityName(double latitude, double longitude) {
         GeocoderHelper.fetchCityName(getApplication(), latitude, longitude, new GeocoderCallback() {
             @Override
@@ -131,7 +116,6 @@ public class HomeViewModel extends AndroidViewModel {
             }
         });
     }
-
     public void signOut() {
         authRepository.signOut(task -> {
             Log.d("HomeViewModel", "Usuario de Google deslogueado.");

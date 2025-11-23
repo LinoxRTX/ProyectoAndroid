@@ -5,7 +5,7 @@
     android:id="@+id/login_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F8FA"
+    android:background="@color/background_main"
     android:padding="32dp"
     tools:context=".ui.login.Login">
 
@@ -14,9 +14,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="💪 Bienvenido a FitLife Tracker"
-        android:textColor="#00BCD4"
-        android:textSize="24sp"
+        android:text="Bienvenido a FitLife"
+        android:textColor="@color/purple_primary"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
-        android:text="Elija Su Metodo De Inicio De Sesión"
-        android:textColor="#757575"
-        android:textSize="16sp"
+        android:text="Tu compañero de entrenamiento"
+        android:textColor="@color/text_secondary"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btnGoogleSignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,15 +42,14 @@
         android:id="@+id/btnGoogleSignIn"
         style="@style/Widget.Material3.Button.Icon"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="64dp"
-        android:paddingVertical="12dp"
-        android:text="Iniciar sesión con Google"
-        android:textColor="#FFFFFF"
+        android:text="Iniciar con Google"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="#00BCD4"
-        app:cornerRadius="24dp"
+        app:backgroundTint="@color/purple_primary"
+        app:cornerRadius="30dp"
         app:elevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/separatorLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +61,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/btnContinueAsGuest"
@@ -73,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#DCDCDC" />
+            android:background="@color/divider_gray" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,14 +81,14 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="O"
-            android:textColor="#757575"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
-            android:background="#DCDCDC" />
+            android:background="@color/divider_gray" />
 
     </LinearLayout>
 
@@ -96,18 +96,17 @@
         android:id="@+id/btnContinueAsGuest"
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingVertical="12dp"
+        android:layout_height="60dp"
         android:text="Continuar como invitado"
-        android:textColor="#00BCD4"
+        android:textColor="@color/purple_primary"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="24dp"
+        app:cornerRadius="30dp"
+        app:strokeColor="@color/purple_primary"
+        app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separatorLayout"
-        app:strokeColor="#00BCD4" />
+        app:layout_constraintTop_toBottomOf="@+id/separatorLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
