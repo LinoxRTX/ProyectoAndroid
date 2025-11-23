@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:drawablePadding="8dp"
-                        android:text="• Bnejamin Vivero (Front-end)"
+                        android:text="• Benjamin Vivero (Front-end)"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
                         app:drawableStartCompat="@android:drawable/ic_menu_myplaces"
