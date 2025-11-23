@@ -58,18 +58,11 @@ public class EjerciciosPredefinidos {
         List<Ejercicio> ejerciciosFullBody = new ArrayList<>();
         ejerciciosFullBody.add(new Ejercicio("Sentadillas", 3, 12));
         ejerciciosFullBody.add(new Ejercicio("Flexiones (Push-ups)", 3, 15));
-        ejerciciosFullBody.add(new Ejercicio("Remo con Mancuerna", 3, 12));
+        ejerciciosFullBody.add(new Ejercicio("Remocon Mancuerna", 3, 12));
         ejerciciosFullBody.add(new Ejercicio("Press Militar con Mancuernas", 3, 12));
         ejerciciosFullBody.add(new Ejercicio("Plancha (segs)", 3, 45));
         mapaEjercicios.put("Full Body", ejerciciosFullBody);
 
-        List<Ejercicio> ejerciciosPosPucio = new ArrayList<>();
-        ejerciciosPosPucio.add(new Ejercicio("llave Nudas", 6, 9));
-        ejerciciosPosPucio.add(new Ejercicio("Reventones de centos", 3, 4));
-        ejerciciosPosPucio.add(new Ejercicio("Chupones De Manguera", 13, 13));
-        ejerciciosPosPucio.add(new Ejercicio("Agarradas de Manguaco", 6, 9));
-        ejerciciosPosPucio.add(new Ejercicio("Say Gex", 3, 45));
-        mapaEjercicios.put("Pos-Pucio", ejerciciosPosPucio);
     }
 
     public static List<Ejercicio> getEjerciciosPorTipo(String tipoRutina) {
