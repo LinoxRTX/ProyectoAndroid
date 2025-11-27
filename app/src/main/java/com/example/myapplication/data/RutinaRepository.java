@@ -2,7 +2,6 @@ package com.example.myapplication.data;
 
 import android.util.Log;
 import androidx.annotation.NonNull;
-
 import com.example.myapplication.data.models.RutinaModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -13,16 +12,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class RutinaRepository {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseRutinas;
     private DatabaseReference mDatabaseCounters;
+    private DatabaseReference mDatabaseLogs;
     private static final String TAG = "RutinaRepository";
 
     private List<RutinaModel> rutinasEnMemoria = new ArrayList<>();
@@ -32,9 +35,9 @@ public class RutinaRepository {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         mDatabaseRutinas = db.getReference("rutinas");
         mDatabaseCounters = db.getReference("counters");
+        mDatabaseLogs = db.getReference("logs");
     }
 
-    // --- CREADOR (Ya estaba bien) ---
     public void guardarRutina(RutinaModel rutina, boolean isGuest, SimpleCallback callback) {
         if (isGuest) {
             rutina.setId("invitado_" + System.currentTimeMillis());
@@ -68,11 +71,12 @@ public class RutinaRepository {
                                 mDatabaseRutinas.child(uid).child(formattedId).setValue(rutina)
                                         .addOnSuccessListener(aVoid -> {
                                             Log.d(TAG, "Rutina guardada en Firebase con ID: " + formattedId);
-                                            callback.onSuccess(); // Avisa al ViewModel
+                                            registrarLog(uid, "CREAR", "Se creó la rutina: " + rutina.getNombreRutina());
+                                            callback.onSuccess();
                                         })
                                         .addOnFailureListener(e -> {
                                             Log.e(TAG, "Error al guardar rutina en Firebase", e);
-                                            callback.onError(e); // Avisa al ViewModel
+                                            callback.onError(e);
                                         });
                             } else {
                                 callback.onError(new Exception("Error al obtener nuevo ID"));
@@ -90,7 +94,6 @@ public class RutinaRepository {
         }
     }
 
-    // --- LECTOR (Sin cambios) ---
     public void obtenerRutinas(boolean isGuest, RutinasCallback callback) {
         if (isGuest) {
             callback.onRutinasCargadas(rutinasEnMemoria);
@@ -122,7 +125,6 @@ public class RutinaRepository {
         }
     }
 
-    // --- ACTUALIZADOR (CORREGIDO CON CALLBACK) ---
     public void actualizarRutina(RutinaModel rutina, boolean isGuest, SimpleCallback callback) {
         if (isGuest) {
             for (int i = 0; i < rutinasEnMemoria.size(); i++) {
@@ -140,11 +142,12 @@ public class RutinaRepository {
                 mDatabaseRutinas.child(uid).child(rutina.getId()).setValue(rutina)
                         .addOnSuccessListener(aVoid -> {
                             Log.d(TAG, "Rutina actualizada en Firebase.");
-                            callback.onSuccess(); // <-- AVISA
+                            registrarLog(uid, "EDITAR", "Se actualizó la rutina ID: " + rutina.getId());
+                            callback.onSuccess();
                         })
                         .addOnFailureListener(e -> {
                             Log.e(TAG, "Error al actualizar rutina", e);
-                            callback.onError(e); // <-- AVISA
+                            callback.onError(e);
                         });
             } else {
                 callback.onError(new Exception("Error al actualizar, usuario o ID nulo"));
@@ -152,7 +155,6 @@ public class RutinaRepository {
         }
     }
 
-    // --- BORRADOR (CORREGIDO CON CALLBACK) ---
     public void eliminarRutina(RutinaModel rutina, boolean isGuest, SimpleCallback callback) {
         if (isGuest) {
             rutinasEnMemoria.removeIf(r -> r.getId().equals(rutina.getId()));
@@ -165,15 +167,25 @@ public class RutinaRepository {
                 mDatabaseRutinas.child(uid).child(rutina.getId()).removeValue()
                         .addOnSuccessListener(aVoid -> {
                             Log.d(TAG, "Rutina eliminada de Firebase.");
-                            callback.onSuccess(); // <-- AVISA
+                            registrarLog(uid, "ELIMINAR", "Se eliminó la rutina: " + rutina.getNombreRutina());
+                            callback.onSuccess();
                         })
                         .addOnFailureListener(e -> {
                             Log.e(TAG, "Error al eliminar rutina", e);
-                            callback.onError(e); // <-- AVISA
+                            callback.onError(e);
                         });
             } else {
                 callback.onError(new Exception("Error al eliminar, usuario o ID nulo"));
             }
         }
+    }
+
+    private void registrarLog(String uid, String accion, String detalles) {
+        String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+        Map<String, Object> logEntry = new HashMap<>();
+        logEntry.put("fecha", timestamp);
+        logEntry.put("accion", accion);
+        logEntry.put("detalles", detalles);
+        mDatabaseLogs.child(uid).push().setValue(logEntry);
     }
 }
